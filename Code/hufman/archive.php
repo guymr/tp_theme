@@ -14,7 +14,7 @@ if ($this->have()):?>
 	    &nbsp;
     	<i class="fa fa-pencil-square-o" aria-hidden="true"></i> <a href="<?php $this->options->adminUrl("write-post.php?cid=".$this->cid); ?>">编辑</a>
 	    <?php endif; ?>
-		<h3 class="post-title"><a href="<?php $this->permalink() ?>"><?php $this->title() ?></a></h3>
+		<h3 class="post-title i"><a href="<?php $this->permalink() ?>"><?php $this->title() ?></a></h3>
         <div class="post-content i">
     		<?php $this->excerpt(200,"..."); ?>
         </div>
@@ -42,7 +42,7 @@ if ($this->have()):?>
 
 <?php endif; ?>
 
-<div class="post mg">
+<div class="post">
     <div class="fr">
         <?php $this->pageLink('下一页 <i class="fa fa-angle-double-right" aria-hidden="true"></i>','next'); ?>
     </div>

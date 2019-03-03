@@ -2,6 +2,11 @@
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
 function themeConfig($form) {
+    $ThemeOptions = new Typecho_Widget_Helper_Form_Element_Checkbox('ThemeOptions', 
+    array('content' => _t('主页文章全文输出')
+    ),
+    array('content'), _t('配置'));
+    $form->addInput($ThemeOptions->multiMode());
 }
 
 function showThumb($obj){

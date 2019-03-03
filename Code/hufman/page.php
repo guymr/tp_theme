@@ -22,4 +22,4 @@ $this->need('head.php');
     <?php $this->need('comments.php'); ?>
 </div>
 
-<?php $this->need('foot.php'); ?><?php
+<?php $this->need('foot.php'); ?>

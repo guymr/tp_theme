@@ -13,9 +13,14 @@ $this->need('head.php');
 ?>
 <?php while($this->next()): ?>
     <div class="post">
-        <a href="<?php $this->permalink() ?>">
-            <?php showThumb($this) ?>
-        </a>
+        <?php
+        if (!empty($this->options->ThemeOptions) && in_array('content', $this->options->ThemeOptions)):
+            $temp_show_content = true;
+            ?><h3><a class="post-title piece" href="<?php $this->permalink() ?>"><?php $this->title() ?></a></h3><?php
+        else:
+            showThumb($this);
+        endif;
+        ?>
 	    <span class="a-color"><?php $this->category(' / '); ?></span>
     	&nbsp;
     	<i class="fa fa-clock-o" aria-hidden="true"></i> <time datetime="<?php $this->date('c'); ?>"><?php $this->date(); ?></time>
@@ -23,14 +28,22 @@ $this->need('head.php');
 	    &nbsp;
     	<i class="fa fa-pencil-square-o" aria-hidden="true"></i> <a href="<?php $this->options->adminUrl("write-post.php?cid=".$this->cid); ?>">编辑</a>
 	    <?php endif; ?>
-		<h3 class="post-title"><a href="<?php $this->permalink() ?>"><?php $this->title() ?></a></h3>
-        <div class="post-content i">
-    		<?php $this->excerpt(200,"..."); ?>
+		<?php if (!$temp_show_content): ?>
+		<h3 class="post-title i"><a href="<?php $this->permalink() ?>"><?php $this->title() ?></a></h3>
+		<?php endif; ?>
+        <div class="post-content<?php if (!$temp_show_content) echo " i" ?>">
+            <?php
+    		if ($temp_show_content):
+    		    $this->content("继续阅读 / Read_more");
+    		else:
+    		    $this->excerpt(250,"...");
+    		endif;
+    		?>
         </div>
     </div>
 <?php endwhile; ?>
 
-<div class="post mg">
+<div class="post">
     <div class="fr">
         <?php $this->pageLink('下一页 <i class="fa fa-angle-double-right" aria-hidden="true"></i>','next'); ?>
     </div>
